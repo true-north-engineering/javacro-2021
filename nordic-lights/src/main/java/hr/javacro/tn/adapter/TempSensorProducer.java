@@ -7,6 +7,7 @@ import org.jboss.logging.Logger;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import java.util.concurrent.CompletionStage;
 
 @ApplicationScoped
 public class TempSensorProducer {
@@ -18,13 +19,9 @@ public class TempSensorProducer {
     Emitter<TempSensor> tempSensorEmitter;
 
 
-    public void sendProducerRecord(TempSensor data) {
-        LOGGER.info("Producer Record: " + data);
-        tempSensorEmitter.send(data);
-    }
-
     public void sendData(String data) {
         LOGGER.info("Producer Record: " + data);
         tempSensorEmitter.send(new TempSensor("bla", "bla"));
     }
+
 }
