@@ -14,17 +14,16 @@ import java.nio.file.Path;
 @ApplicationScoped
 public class AppReadinessResource implements HealthCheck {
 
-//    @ConfigProperty(name = "directory.location")
-//    String directoryLocation;
+    @ConfigProperty(name = "directory.location")
+    String directoryLocation;
 
     @Override
     public HealthCheckResponse call() {
         HealthCheckResponseBuilder responseBuilder = HealthCheckResponse.named("Hot folder connection health check");
-//        Path path = Path.of(directoryLocation);
-//        if (!Files.isDirectory(path) || !Files.isReadable(path)){
-//            responseBuilder.down();
-//        }
-//        else
+        Path path = Path.of(directoryLocation);
+        if (!Files.isDirectory(path) || !Files.isReadable(path)) {
+            responseBuilder.down();
+        } else
         responseBuilder.up();
 
         return responseBuilder.build();

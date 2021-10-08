@@ -1,6 +1,6 @@
 package hr.javacro.tn;
 
-import hr.javacro.tn.domain.TempSensorService;
+import hr.javacro.tn.adapter.TempSensorProducer;
 import io.quarkus.runtime.QuarkusApplication;
 import io.quarkus.runtime.annotations.QuarkusMain;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
@@ -25,7 +25,7 @@ public class FlashGordonMain implements QuarkusApplication {
     String directoryLocation;
 
     @Inject
-    TempSensorService service;
+    TempSensorProducer producer;
 
     @Override
     public int run(String... args) throws Exception {
@@ -39,7 +39,7 @@ public class FlashGordonMain implements QuarkusApplication {
                 List<Path> files = listFilesInDir(path);
                 for (Path file : files) {
                     List<String> lines = Files.lines(file).collect(Collectors.toList());
-                    lines.stream().forEach(l -> service.sendData(l));
+                    lines.stream().forEach(l -> producer.sendData(l));
                 }
             } catch (IOException e) {
                 LOGGER.error("Error while deleting file", e);
