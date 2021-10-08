@@ -1,4 +1,4 @@
-package hr.javacro.tn.port.command;
+package hr.javacro.tn;
 
 import hr.javacro.tn.domain.TempSensorService;
 import io.quarkus.runtime.QuarkusApplication;
@@ -8,11 +8,12 @@ import org.jboss.logging.Logger;
 
 import javax.inject.Inject;
 import java.io.IOException;
-import java.nio.file.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
 
 @QuarkusMain
 public class FlashGordonMain implements QuarkusApplication {
@@ -38,9 +39,7 @@ public class FlashGordonMain implements QuarkusApplication {
                 List<Path> files = listFilesInDir(path);
                 for (Path file : files) {
                     List<String> lines = Files.lines(file).collect(Collectors.toList());
-                    lines.stream().forEach(l-> service.sendData(l));
-                    LOGGER.info("Deleting file " + file.getFileName());
-                    Files.delete(file);
+                    lines.stream().forEach(l -> service.sendData(l));
                 }
             } catch (IOException e) {
                 LOGGER.error("Error while deleting file", e);
@@ -51,7 +50,7 @@ public class FlashGordonMain implements QuarkusApplication {
 
     private List<Path> listFilesInDir(Path path) throws IOException {
         List<Path> files;
-        try(Stream<Path> stream = Files.list(path)){
+        try (Stream<Path> stream = Files.list(path)) {
             files = stream.collect(Collectors.toList());
         }
         return files;
