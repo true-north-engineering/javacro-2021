@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: nordic-lights
+spec:
+  selector:
+    matchLabels:
+      name: nordic-lights
+  template:
+    metadata:
+      labels:
+        name: nordic-lights
+    spec:
+      containers:
+      - name: sensor-data-reader
+        image: ghcr.io/javacro2011/nordic-lights:latest
+        volumeMounts:
+        - name: config-volume
+          mountPath: /etc/config
+        - name: sensor-data-volume
+          mountPath: /tmp/dht11_sensor_data
+      volumes:
+      - name: config-volume
+        configMap:
+          name: nordic-lights
+      - name: sensor-data-volume
+        hostPath:
+          path: /tmp/dht11_sensor_data
+          type: File
