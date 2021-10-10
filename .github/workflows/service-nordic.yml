@@ -6,6 +6,7 @@ name: 'JavaCro2021 Nordic Lights'
 env:
   DOCKER_NATIVE_IMAGE_BUILDER: "docker.io/anamarijatn/quarkus-build-aarch64:0.1"
   REGISTRY: "ghcr.io"
+  DOCKER_IMAGE_NAME: "ghcr.io/true-north-engineering/nordic-lights:0.1"
 on:
   workflow_dispatch:
     inputs:
@@ -47,7 +48,7 @@ jobs:
 
       - name: Build the tagged Docker image
         working-directory: nordic-lights/
-        run: docker build -f ./src/main/docker/Dockerfile.native -t ${{ env.DOCKER_IMAGE_NAME }}:0.1 .
+        run: docker build -f ./src/main/docker/Dockerfile.native -t ${{ env.DOCKER_IMAGE_NAME }} .
 
       - name: Push the tagged Docker image
         working-directory: nordic-lights/
