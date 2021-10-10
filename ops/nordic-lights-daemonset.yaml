@@ -27,3 +27,5 @@ spec:
         hostPath:
           path: /tmp/dht11_sensor_data
           type: File
+      nodeSelector: 
+        kubernetes.io/role: agent
