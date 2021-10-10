@@ -4,8 +4,8 @@
 name: 'JavaCro2021 Nordic Lights'
 
 env:
-  DOCKER_IMAGE_NAME: "anamarijatn/quarkus-sensor-demo"
-  DOCKER_NATIVE_IMAGE_BUILDER: "anamarijatn/quarkus-build-aarch64"
+  DOCKER_IMAGE_NAME: "docker.io/anamarijatn/quarkus-sensor-demo"
+  DOCKER_NATIVE_IMAGE_BUILDER: "docker.io/anamarijatn/quarkus-build-aarch64"
   DOCKER_USER: "anamarijatn"
 
 on:
