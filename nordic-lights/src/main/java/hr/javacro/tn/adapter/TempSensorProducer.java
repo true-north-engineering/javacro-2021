@@ -7,7 +7,8 @@ import org.jboss.logging.Logger;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import java.util.concurrent.CompletionStage;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 @ApplicationScoped
 public class TempSensorProducer {
@@ -18,10 +19,23 @@ public class TempSensorProducer {
     @Channel("temp-sensor-data")
     Emitter<TempSensor> tempSensorEmitter;
 
+    private final String name;
+
+    public TempSensorProducer() {
+        String hostname;
+
+        try {
+            hostname = InetAddress.getLocalHost().getHostName();
+        } catch (UnknownHostException e) {
+            hostname = "Unknown";
+        }
+
+        name = hostname;
+    }
 
     public void sendData(String data) {
         LOGGER.info("Producer Record: " + data);
-        tempSensorEmitter.send(new TempSensor("bla", "bla"));
+        String[] tmp = data.split(",");
+        tempSensorEmitter.send(new TempSensor(name, tmp[0]));
     }
-
 }
