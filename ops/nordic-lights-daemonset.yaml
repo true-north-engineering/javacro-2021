@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: sensor-data-reader
-        image: ghcr.io/javacro2011/nordic-lights:0.1
+        image: ghcr.io/true-north-engineering/nordic-lights:0.1
         volumeMounts:
         - name: config-volume
           mountPath: /work/config
