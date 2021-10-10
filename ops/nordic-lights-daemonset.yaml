@@ -16,7 +16,7 @@ spec:
         image: ghcr.io/javacro2011/nordic-lights:0.1
         volumeMounts:
         - name: config-volume
-          mountPath: /etc/config
+          mountPath: /work/config
         - name: sensor-data-volume
           mountPath: /tmp/dht11_sensor_data
       volumes:
