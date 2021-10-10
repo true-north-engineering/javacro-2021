@@ -6,6 +6,6 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class TempSensor {
-    private String temp;
     private String name;
+    private String temp;
 }
