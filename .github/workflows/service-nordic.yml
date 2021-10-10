@@ -3,6 +3,9 @@
 
 name: 'JavaCro2021 Nordic Lights'
 
+env:
+  DOCKER_IMAGE_NAME: "anamarijatn/quarkus-sensor-demo"
+
 on:
   workflow_dispatch:
     inputs:
@@ -16,8 +19,7 @@ on:
 defaults:
   run:
     shell: bash
-env:
-  DOCKER_IMAGE_NAME: "anamarijatn/quarkus-sensor-demo"
+
 
 jobs:
   build_docker_image:
@@ -44,7 +46,7 @@ jobs:
 
       - name: Build the tagged Docker image
         working-directory: nordic-lights/
-        run: docker build -f ./src/main/docker/Dockerfile.native -t ${{DOCKER_IMAGE_NAME}}:${{ github.sha }} .
+        run: docker build -f ./src/main/docker/Dockerfile.native -t ${{ env.DOCKER_IMAGE_NAME }}:${{ github.sha }} .
 
       - name: Push the tagged Docker image
         working-directory: nordic-lights/
