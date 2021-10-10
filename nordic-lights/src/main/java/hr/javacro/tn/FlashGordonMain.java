@@ -37,7 +37,7 @@ public class FlashGordonMain implements QuarkusApplication {
             LOGGER.error("Error while loading hot folder");
             return 1;
         }
-        while (true) {
+//        while (true) {
             try {
                 List<Path> files = listFilesInDir(path);
                 for (Path file : files) {
@@ -49,7 +49,8 @@ public class FlashGordonMain implements QuarkusApplication {
                 LOGGER.error("Error while deleting file", e);
                 return 0;
             }
-        }
+//        }
+        return 0;
     }
 
     private List<Path> listFilesInDir(Path path) throws IOException {
