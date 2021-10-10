@@ -52,7 +52,7 @@ jobs:
 
       - name: Push the tagged Docker image
         working-directory: nordic-lights/
-        run: docker push ${{ env.DOCKER_IMAGE_NAME }}:${{ github.sha }}
+        run: docker push ${{ env.DOCKER_IMAGE_NAME }}
 # deploy_kubernetes:
 #   name: Deploy to Kubernetes Cluster
 #   needs: build_docker_image
