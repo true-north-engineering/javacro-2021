@@ -11,10 +11,10 @@ on:
     inputs:
       tag:
         description: "Tag to deploy. Leave empty to use latest commit."
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+#   push:
+#     branches: [ main ]
+#   pull_request:
+#     branches: [ main ]
 
 defaults:
   run:
@@ -67,6 +67,6 @@ jobs:
 #         kubeconfig: ${{ secrets.KUBE_CONFIG }} # Use secret (https://developer.github.com/actions/managing-workflows/storing-secrets/)
 #
 #     - name: Deploy to Cluster
-#       working-directory: nordic-lights/ops/
+#       working-directory: ops/
 #       run: |
 #         kubectl apply -f nordic-lights-daemonset.yaml
