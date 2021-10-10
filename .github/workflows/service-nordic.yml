@@ -5,6 +5,7 @@ name: 'JavaCro2021 Nordic Lights'
 
 env:
   DOCKER_IMAGE_NAME: "anamarijatn/quarkus-sensor-demo"
+  DOCKER_NATIVE_IMAGE_BUILDER: "anamarijatn/quarkus-build-aarch64"
 
 on:
   workflow_dispatch:
@@ -42,7 +43,7 @@ jobs:
 
       - name: Build with Maven
         working-directory: nordic-lights/
-        run: mvn package -Dquarkus.package.type=native -Dquarkus.native.container-build=true -Dquarkus.native.builder-image=${{ secrets.DOCKERHUB_USERNAME }}/quarkus-build-aarch64:latest
+        run: mvn package -Dquarkus.package.type=native -Dquarkus.native.container-build=true -Dquarkus.native.builder-image=${{ env.DOCKER_NATIVE_IMAGE_BUILDER }}:latest
 
       - name: Build the tagged Docker image
         working-directory: nordic-lights/
