@@ -26,12 +26,10 @@ public class FlashGordonMain {
     @Scheduled(every = "2s")
     void increment() {
         Path path = Paths.get(fileLocation);
-
         if (!Files.isReadable(path)) {
             LOGGER.error("Error while loading file");
             return;
         }
-
         try {
             String line = Files.readString(path).trim();
             producer.sendData(line);

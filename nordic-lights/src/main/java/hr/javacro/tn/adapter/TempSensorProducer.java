@@ -23,7 +23,6 @@ public class TempSensorProducer {
 
     public TempSensorProducer() {
         String hostname;
-
         try {
             hostname = InetAddress.getLocalHost().getHostName();
         } catch (UnknownHostException e) {
