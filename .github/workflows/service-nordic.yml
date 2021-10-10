@@ -47,7 +47,7 @@ jobs:
 
       - name: Build the tagged Docker image
         working-directory: nordic-lights/
-        run: docker build -f ./src/main/docker/Dockerfile.native -t ${{ env.DOCKER_IMAGE_NAME }}:latest .
+        run: docker build -f ./src/main/docker/Dockerfile.native -t ${{ env.DOCKER_IMAGE_NAME }}:0.1 .
 
       - name: Push the tagged Docker image
         working-directory: nordic-lights/
